@@ -10,9 +10,10 @@ const App = () => {
 			{ name: "Ashutosh!", age: 32 },
 			{ name: "Kilo", age: 45 },
 			{ name: "Mario", age: 80 }
-		],
-		other: "Something others"
+		]
 	});
+
+	let [otherState, setOtherState] = useState("This doesn't chage");
 
 	let buttonClickHandler = () => {
 		setPersonState({
@@ -23,7 +24,7 @@ const App = () => {
 			]
 		});
 	};
-
+	console.log(personState, otherState);
 	return (
 		<div className="App">
 			<h1>Ashutosh Tiwari in</h1>
