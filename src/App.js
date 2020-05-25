@@ -1,22 +1,21 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 //components
 import Person from "./Person/Person";
 
-class App extends Component {
-	state = {
-		//directly state no let, var !! (they are mentioned in function)
+const App = () => {
+	let [personState, setPersonState] = useState({
 		persons: [
-			{ name: "Ashutosh", age: 23 },
+			{ name: "Ashutosh!", age: 32 },
 			{ name: "Kilo", age: 45 },
 			{ name: "Mario", age: 80 }
 		],
-		more: "Anything here !"
-	};
+		other: "Something others"
+	});
 
-	buttonClickHandler = () => {
-		this.setState({
+	let buttonClickHandler = () => {
+		setPersonState({
 			persons: [
 				{ name: "Changed IT!", age: 29 },
 				{ name: "Kilo", age: 45 },
@@ -25,25 +24,33 @@ class App extends Component {
 		});
 	};
 
-	render() {
-		return (
-			<div className="App">
-				<h1>Ashutosh Tiwari in</h1>
-				<button onClick={this.buttonClickHandler}> HERE </button>
-				<Person
-					name={this.state.persons[0].name}
-					age={this.state.persons[0].age}
-				/>
-				<Person
-					name={this.state.persons[1].name}
-					age={this.state.persons[1].age}
-				>
-					{" "}
-					My Hobbie is : Racing{" "}
-				</Person>
-			</div>
-		);
-	}
-}
+	return (
+		<div className="App">
+			<h1>Ashutosh Tiwari in</h1>
+			<button onClick={buttonClickHandler}> HERE </button>
+			<Person
+				name={personState.persons[0].name}
+				age={personState.persons[0].age}
+			/>
+			<Person
+				name={personState.persons[1].name}
+				age={personState.persons[1].age}
+			>
+				{" "}
+				My Hobbie is : Racing{" "}
+			</Person>
+		</div>
+	);
+};
 
 export default App;
+
+// buttonClickHandler = () => {
+// 	this.setState({
+// 		persons: [
+// 			{ name: "Changed IT!", age: 29 },
+// 			{ name: "Kilo", age: 45 },
+// 			{ name: "Mario", age: 80 }
+// 		]
+// 	});
+//  };
