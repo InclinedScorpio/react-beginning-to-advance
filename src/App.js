@@ -15,10 +15,10 @@ class App extends Component {
 		more: "Anything here !"
 	};
 
-	buttonClickHandler = () => {
+	buttonClickHandler = name => {
 		this.setState({
 			persons: [
-				{ name: "Changed IT!", age: 29 },
+				{ name: name, age: 29 },
 				{ name: "Kilo", age: 45 },
 				{ name: "Mario", age: 80 }
 			]
@@ -29,14 +29,23 @@ class App extends Component {
 		return (
 			<div className="App">
 				<h1>Ashutosh Tiwari in</h1>
-				<button onClick={this.buttonClickHandler}> HERE </button>
+				<button onClick={this.buttonClickHandler.bind(this, "Ashutosh ")}>
+					{" "}
+					HERE{" "}
+				</button>
 				<Person
 					name={this.state.persons[0].name}
 					age={this.state.persons[0].age}
+					click={() => {
+						this.buttonClickHandler("Mario");
+					}}
 				/>
 				<Person
 					name={this.state.persons[1].name}
 					age={this.state.persons[1].age}
+					click={() => {
+						this.buttonClickHandler("Delta");
+					}}
 				>
 					{" "}
 					My Hobbie is : Racing{" "}
