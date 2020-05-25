@@ -5,6 +5,7 @@ import "./App.css";
 import Person from "./Person/Person";
 
 const App = () => {
+	//Use multiple use state rather than having single large usestate
 	let [personState, setPersonState] = useState({
 		persons: [
 			{ name: "Ashutosh!", age: 32 },
@@ -16,6 +17,7 @@ const App = () => {
 	let [otherState, setOtherState] = useState("This doesn't chage");
 
 	let buttonClickHandler = () => {
+		//WARNING :this will only keep person and remove rest all
 		setPersonState({
 			persons: [
 				{ name: "Changed IT!", age: 29 },
@@ -45,13 +47,3 @@ const App = () => {
 };
 
 export default App;
-
-// buttonClickHandler = () => {
-// 	this.setState({
-// 		persons: [
-// 			{ name: "Changed IT!", age: 29 },
-// 			{ name: "Kilo", age: 45 },
-// 			{ name: "Mario", age: 80 }
-// 		]
-// 	});
-//  };
