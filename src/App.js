@@ -16,34 +16,44 @@ const App = () => {
 
 	let [otherState, setOtherState] = useState("This doesn't chage");
 
-	let buttonClickHandler = () => {
-		//WARNING :this will only keep person and remove rest all
-		setPersonState({
+	buttonClickHandler = name => {
+		this.setState({
 			persons: [
-				{ name: "Changed IT!", age: 29 },
+				{ name: name, age: 29 },
 				{ name: "Kilo", age: 45 },
 				{ name: "Mario", age: 80 }
 			]
 		});
-	};
-	console.log(personState, otherState);
-	return (
-		<div className="App">
-			<h1>Ashutosh Tiwari in</h1>
-			<button onClick={buttonClickHandler}> HERE </button>
-			<Person
-				name={personState.persons[0].name}
-				age={personState.persons[0].age}
-			/>
-			<Person
-				name={personState.persons[1].name}
-				age={personState.persons[1].age}
-			>
-				{" "}
-				My Hobbie is : Racing{" "}
-			</Person>
-		</div>
-	);
-};
+  }
+  
+	render() {
+		return (
+			<div className="App">
+				<h1>Ashutosh Tiwari in</h1>
+				<button onClick={this.buttonClickHandler.bind(this, "Ashutosh ")}>
+					{" "}
+					HERE{" "}
+				</button>
+				<Person
+					name={this.state.persons[0].name}
+					age={this.state.persons[0].age}
+					click={() => {
+						this.buttonClickHandler("Mario");
+					}}
+				/>
+				<Person
+					name={this.state.persons[1].name}
+					age={this.state.persons[1].age}
+					click={() => {
+						this.buttonClickHandler("Delta");
+					}}
+				>
+					{" "}
+					My Hobbie is : Racing{" "}
+				</Person>
+			</div>
+		);
+	}
+}
 
 export default App;
