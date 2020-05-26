@@ -6,3 +6,9 @@
 	border: 2px solid goldenrod;
 	box-shadow: 1px 1px 1px slategray;
 }
+
+@media (min-width: 800px) {
+	.Person {
+		width: 10%;
+	}
+}

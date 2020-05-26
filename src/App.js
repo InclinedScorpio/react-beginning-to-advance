@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import "./App.css";
-import styled from "styled-components";
+import appStyle from "./App.module.css";
 
 //components
 import Person from "./Person/Person";
@@ -50,9 +49,7 @@ class App extends Component {
 	};
 
 	render() {
-		let style = {};
-
-		let classes = [];
+		let buttonClasses = [];
 
 		let person = null;
 		if (this.state.showPersons) {
@@ -79,25 +76,26 @@ class App extends Component {
 					})}
 				</div>
 			);
+			buttonClasses.push(appStyle.Red);
 		}
-
+		let h4classes = [];
 		if (this.state.persons.length <= 2) {
-			classes.push("red");
+			h4classes.push(appStyle.bold);
 		}
 		if (this.state.persons.length <= 1) {
-			classes.push("undeline");
+			h4classes.push(appStyle.undeline);
 		}
 
 		return (
-			<div className="App">
-				<h4 className={classes.join(" ")}>Ashutosh Tiwari in</h4>
-				<StyledButton
+			<div className={appStyle.App}>
+				<h4 className={h4classes.join(" ")}>Ashutosh Tiwari in</h4>
+				<button
+					className={buttonClasses.join(" ")}
 					onClick={this.buttonClickHandler.bind(this, "Changed")}
-					alt={this.state.showPersons}
 				>
 					{" "}
 					HERE{" "}
-				</StyledButton>
+				</button>
 				{person}
 			</div>
 		);
@@ -105,15 +103,3 @@ class App extends Component {
 }
 
 export default App;
-
-const StyledButton = styled.button`
-	box-shadow: "1px 1px 1px grey";
-	color: white;
-	background-color: ${props => {
-		return props.alt ? "red" : "green";
-	}};
-	&:hover {
-		background-color: ${props => (props.alt ? "salmon" : "lightgreen")};
-		color: black;
-	}
-`;

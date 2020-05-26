@@ -1,0 +1,36 @@
+.App {
+	text-align: center;
+	margin: 2%;
+}
+
+.red {
+	color: red;
+}
+
+.App .undeline {
+	text-decoration: underline;
+}
+
+.App button.Red {
+	color: white;
+	background-color: red;
+	font-size: large;
+}
+
+.App button.Red:hover {
+	background-color: salmon;
+}
+
+.App .bold {
+	font-weight: 900;
+}
+
+.App button {
+	color: white;
+	background-color: green;
+	font-size: large;
+}
+
+.App button:hover {
+	background-color: lightgreen;
+}
