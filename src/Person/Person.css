@@ -1,0 +1,8 @@
+.Person {
+	color: red;
+	width: 40%;
+	margin: 3% auto;
+	padding: 2%;
+	border: 2px solid goldenrod;
+	box-shadow: 1px 1px 1px slategray;
+}

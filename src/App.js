@@ -3,64 +3,106 @@ import "./App.css";
 
 //components
 import Person from "./Person/Person";
+import { red } from "color-name";
 
 class App extends Component {
 	state = {
 		//directly state no let, var !! (they are mentioned in function)
 		persons: [
-			{ name: "Ashutosh", age: 23 },
-			{ name: "Kilo", age: 45 },
-			{ name: "Mario", age: 80 }
+			{ id: "1", name: "Ashutosh", age: 23 },
+			{ id: "2", name: "Kilo", age: 45 },
+			{ id: "3", name: "Mario", age: 80 }
 		],
-		more: "Anything here !"
+		more: "Anything here !",
+		showPersons: false
 	};
 
-	buttonClickHandler = name => {
+	buttonClickHandler = () => {
 		this.setState({
-			persons: [
-				{ name: name, age: 29 },
-				{ name: "Kilo", age: 45 },
-				{ name: "Mario", age: 80 }
-			]
+			showPersons: !this.state.showPersons
 		});
 	};
 
-	changeName = event => {
+	deletePerson = personIndex => {
+		let persons = [...this.state.persons];
+		persons.splice(personIndex, 1);
 		this.setState({
-			persons: [
-				{ name: event.target.value, age: 29 },
-				{ name: "Kilo", age: 45 },
-				{ name: "Mario", age: 80 }
-			]
+			persons: persons
+		});
+	};
+
+	changePersonName = (event, personIndex) => {
+		//pehle id se index chaiye
+		let actualIndex = this.state.persons.findIndex(p => {
+			return p.id == personIndex;
+		});
+
+		let actual_person = { ...this.state.persons[actualIndex] };
+
+		let get_array = [...this.state.persons];
+		get_array[actualIndex].name = event.target.value;
+		get_array[actualIndex].age = actual_person.age;
+
+		this.setState({
+			persons: get_array
 		});
 	};
 
 	render() {
+		let style = {
+			boxShadow: "1px 1px 1px grey",
+			color: "white",
+			backgroundColor: "green"
+		};
+
+		let classes = [];
+
+		let person = null;
+		if (this.state.showPersons) {
+			person = (
+				<div>
+					{this.state.persons.map((person, index) => {
+						return (
+							<div key={person.id}>
+								<Person
+									name={person.name}
+									age={person.age}
+									click={() => {
+										this.buttonClickHandler("Mario");
+									}}
+									changeName={event => {
+										this.changePersonName(event, person.id);
+									}}
+									deleteme={() => {
+										this.deletePerson(index);
+									}}
+								/>
+							</div>
+						);
+					})}
+				</div>
+			);
+			style.backgroundColor = "red";
+		}
+
+		if (this.state.persons.length <= 2) {
+			classes.push("red");
+		}
+		if (this.state.persons.length <= 1) {
+			classes.push("undeline");
+		}
+
 		return (
 			<div className="App">
-				<h1>Ashutosh Tiwari in</h1>
-				<button onClick={this.buttonClickHandler.bind(this, "Ashutosh ")}>
+				<h4 className={classes.join(" ")}>Ashutosh Tiwari in</h4>
+				<button
+					onClick={this.buttonClickHandler.bind(this, "Changed")}
+					style={style}
+				>
 					{" "}
 					HERE{" "}
 				</button>
-				<Person
-					name={this.state.persons[0].name}
-					age={this.state.persons[0].age}
-					click={() => {
-						this.buttonClickHandler("Mario");
-					}}
-					changeName={this.changeName}
-				/>
-				<Person
-					name={this.state.persons[1].name}
-					age={this.state.persons[1].age}
-					click={() => {
-						this.buttonClickHandler("Delta");
-					}}
-				>
-					{" "}
-					My Hobbie is : Racing{" "}
-				</Person>
+				{person}
 			</div>
 		);
 	}
