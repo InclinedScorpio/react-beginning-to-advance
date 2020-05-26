@@ -10,20 +10,15 @@ const Person = props => {
 		padding: 2%;
 		border: 2px solid goldenrod;
 		box-shadow: 1px 1px 1px slategray;
-		:hover {
+		&:hover {
+			//& points to div here
 			background-color: yellow;
+		}
+		@media (min-width: 800px) {
+			width: 10%;
 		}
 	`;
 
-	let style = {
-		":hover": {
-			backgroundColor: "yellow",
-			color: "black"
-		},
-		"@media(min-width : 500px)": {
-			width: "100px"
-		}
-	};
 	return (
 		<StyledDiv>
 			<p className="content" onClick={props.deleteme}>

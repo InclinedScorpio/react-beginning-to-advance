@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
+import styled from "styled-components";
 
 //components
 import Person from "./Person/Person";
@@ -49,15 +50,7 @@ class App extends Component {
 	};
 
 	render() {
-		let style = {
-			boxShadow: "1px 1px 1px grey",
-			color: "white",
-			backgroundColor: "green",
-			":hover": {
-				backgroundColor: "lightgreen",
-				color: "black"
-			}
-		};
+		let style = {};
 
 		let classes = [];
 
@@ -86,11 +79,6 @@ class App extends Component {
 					})}
 				</div>
 			);
-			style.backgroundColor = "red";
-			style[":hover"] = {
-				backgroundColor: "pink",
-				color: "black"
-			};
 		}
 
 		if (this.state.persons.length <= 2) {
@@ -103,13 +91,13 @@ class App extends Component {
 		return (
 			<div className="App">
 				<h4 className={classes.join(" ")}>Ashutosh Tiwari in</h4>
-				<button
+				<StyledButton
 					onClick={this.buttonClickHandler.bind(this, "Changed")}
-					style={style}
+					alt={this.state.showPersons}
 				>
 					{" "}
 					HERE{" "}
-				</button>
+				</StyledButton>
 				{person}
 			</div>
 		);
@@ -117,3 +105,15 @@ class App extends Component {
 }
 
 export default App;
+
+const StyledButton = styled.button`
+	box-shadow: "1px 1px 1px grey";
+	color: white;
+	background-color: ${props => {
+		return props.alt ? "red" : "green";
+	}};
+	&:hover {
+		background-color: ${props => (props.alt ? "salmon" : "lightgreen")};
+		color: black;
+	}
+`;
