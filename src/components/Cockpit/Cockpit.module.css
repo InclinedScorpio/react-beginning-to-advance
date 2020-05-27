@@ -1,0 +1,31 @@
+.Cockpit {
+	text-align: center;
+}
+
+.Cockpit .undeline {
+	text-decoration: underline;
+}
+
+.Cockpit button.Red {
+	color: white;
+	background-color: red;
+	font-size: large;
+}
+
+.Cockpit button.Red:hover {
+	background-color: salmon;
+}
+
+.Cockpit .bold {
+	font-weight: 900;
+}
+
+.Cockpit button {
+	color: white;
+	background-color: green;
+	font-size: large;
+}
+
+.Cockpit button:hover {
+	background-color: lightgreen;
+}

@@ -3,7 +3,7 @@ import appStyle from "./App.module.css";
 
 //components
 import Persons from "../components/Persons/Persons";
-import { red } from "color-name";
+import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
 	state = {
@@ -32,7 +32,6 @@ class App extends Component {
 	};
 
 	changePersonName = (event, personIndex) => {
-		//pehle id se index chaiye
 		let actualIndex = this.state.persons.findIndex(p => {
 			return p.id == personIndex;
 		});
@@ -49,8 +48,6 @@ class App extends Component {
 	};
 
 	render() {
-		let buttonClasses = [];
-
 		let person = null;
 		if (this.state.showPersons) {
 			person = (
@@ -61,26 +58,15 @@ class App extends Component {
 					deleted={this.deletePerson}
 				/>
 			);
-			buttonClasses.push(appStyle.Red);
-		}
-		let h4classes = [];
-		if (this.state.persons.length <= 2) {
-			h4classes.push(appStyle.bold);
-		}
-		if (this.state.persons.length <= 1) {
-			h4classes.push(appStyle.undeline);
 		}
 
 		return (
 			<div className={appStyle.App}>
-				<h4 className={h4classes.join(" ")}>Ashutosh Tiwari in</h4>
-				<button
-					className={buttonClasses.join(" ")}
-					onClick={this.buttonClickHandler.bind(this, "Changed")}
-				>
-					{" "}
-					HERE{" "}
-				</button>
+				<Cockpit
+					showPersons={this.state.showPersons}
+					persons={this.state.persons}
+					clicked={this.buttonClickHandler}
+				/>
 				{person}
 			</div>
 		);
