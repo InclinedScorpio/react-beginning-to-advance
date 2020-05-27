@@ -60,6 +60,10 @@ class App extends Component {
 		});
 	};
 
+	componentDidUpdate(prevProps, prevState, snapshot) {
+		console.log("[App.js]componentDidUpdate ");
+	}
+
 	render() {
 		console.log("Render - App.js");
 		let person = null;

@@ -1,16 +1,17 @@
-import React from "react";
+import React, { Component } from "react";
 import stylePerson from "./Person.module.css";
 
-const Person = props => {
-	let num = Math.random();
-	return (
-		<div className={stylePerson.Person}>
-			<p onClick={props.deleteme}>
-				Hello, I am {props.name}, I am {props.age} year's old.
-			</p>
-			<input onChange={props.changeName} value={props.name} />
-		</div>
-	);
-};
+class Person extends Component {
+	render() {
+		return (
+			<div className={stylePerson.Person}>
+				<p onClick={this.props.deleteme}>
+					Hello, I am {this.props.name}, I am {this.props.age} year's old.
+				</p>
+				<input onChange={this.props.changeName} value={this.props.name} />
+			</div>
+		);
+	}
+}
 
 export default Person;
