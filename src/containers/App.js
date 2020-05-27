@@ -6,16 +6,29 @@ import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
 
 class App extends Component {
-	state = {
-		//directly state no let, var !! (they are mentioned in function)
-		persons: [
-			{ id: "1", name: "Ashutosh", age: 23 },
-			{ id: "2", name: "Kilo", age: 45 },
-			{ id: "3", name: "Mario", age: 80 }
-		],
-		more: "Anything here !",
-		showPersons: false
+	constructor(props) {
+		console.log("Constructor in App.js", props);
+		super(props);
+		this.state = {
+			persons: [
+				{ id: "1", name: "Ashutosh", age: 23 },
+				{ id: "2", name: "Kilo", age: 45 },
+				{ id: "3", name: "Mario", age: 80 }
+			],
+			more: "Anything here !",
+			showPersons: false
+		};
+	}
+
+	static getDerivedStateFromProps = (props, state) => {
+		console.log("Get derived state from props - App.js", props, state);
+		return state;
 	};
+
+	componentDidMount() {
+		console.log("Component did mount inside");
+		//do everything here.
+	}
 
 	buttonClickHandler = () => {
 		this.setState({
@@ -48,6 +61,7 @@ class App extends Component {
 	};
 
 	render() {
+		console.log("Render - App.js");
 		let person = null;
 		if (this.state.showPersons) {
 			person = (
