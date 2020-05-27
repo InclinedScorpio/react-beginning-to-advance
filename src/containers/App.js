@@ -16,7 +16,8 @@ class App extends Component {
 				{ id: "3", name: "Mario", age: 80 }
 			],
 			more: "Anything here !",
-			showPersons: false
+			showPersons: false,
+			showHeading: true
 		};
 	}
 
@@ -80,11 +81,22 @@ class App extends Component {
 
 		return (
 			<div className={appStyle.App}>
-				<Cockpit
-					showPersons={this.state.showPersons}
-					persons={this.state.persons}
-					clicked={this.buttonClickHandler}
-				/>
+				<button
+					onClick={() => {
+						this.setState({
+							showHeading: !this.state.showHeading
+						});
+					}}
+				>
+					Close Heading
+				</button>
+				{this.state.showHeading && (
+					<Cockpit
+						showPersons={this.state.showPersons}
+						persons={this.state.persons}
+						clicked={this.buttonClickHandler}
+					/>
+				)}
 				{person}
 			</div>
 		);
