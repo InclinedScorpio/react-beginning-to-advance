@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import appStyle from "./App.module.css";
 
 //components
-import Person from "./Person/Person";
+import Persons from "../components/Persons/Persons";
 import { red } from "color-name";
 
 class App extends Component {
@@ -54,27 +54,12 @@ class App extends Component {
 		let person = null;
 		if (this.state.showPersons) {
 			person = (
-				<div>
-					{this.state.persons.map((person, index) => {
-						return (
-							<div key={person.id}>
-								<Person
-									name={person.name}
-									age={person.age}
-									click={() => {
-										this.buttonClickHandler("Mario");
-									}}
-									changeName={event => {
-										this.changePersonName(event, person.id);
-									}}
-									deleteme={() => {
-										this.deletePerson(index);
-									}}
-								/>
-							</div>
-						);
-					})}
-				</div>
+				<Persons
+					persons={this.state.persons}
+					clicked={this.buttonClickHandler}
+					changed={this.changePersonName}
+					deleted={this.deletePerson}
+				/>
 			);
 			buttonClasses.push(appStyle.Red);
 		}

@@ -2,6 +2,7 @@ import React from "react";
 import stylePerson from "./Person.module.css";
 
 const Person = props => {
+	let num = Math.random();
 	return (
 		<div className={stylePerson.Person}>
 			<p onClick={props.deleteme}>
