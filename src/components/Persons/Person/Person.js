@@ -6,7 +6,6 @@ import PropTypes from "prop-types";
 
 class Person extends Component {
 	inputRef = React.createRef();
-
 	componentDidMount() {
 		//if want to do some other than pass a flag with 2nd & use if
 		this.inputRef.current.focus();
