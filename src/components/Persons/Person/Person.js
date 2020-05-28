@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import stylePerson from "./Person.module.css";
 import Auxiliary from "../../../hoc/Auxiliary";
 import withClass from "../../../hoc/withClass";
+import PropTypes from "prop-types";
 
 const Person = props => {
 	console.log("Props are ", props);
@@ -21,6 +22,14 @@ const Person = props => {
 			<input onChange={props.changeName} value={props.name} />
 		</Auxiliary>
 	);
+};
+
+//propTypes in components if added, React will take care of that.
+Person.propTypes = {
+	name: PropTypes.string,
+	age: PropTypes.number,
+	changeName: PropTypes.func,
+	deleteme: PropTypes.func
 };
 
 export default withClass(Person, stylePerson.Person);
