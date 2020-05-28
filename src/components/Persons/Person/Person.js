@@ -1,8 +1,10 @@
 import React, { useEffect } from "react";
 import stylePerson from "./Person.module.css";
 import Auxiliary from "../../../hoc/Auxiliary";
+import withClass from "../../../hoc/withClass";
 
 const Person = props => {
+	console.log("Props are ", props);
 	useEffect(() => {
 		console.log("Use Effect 1 ****************");
 
@@ -12,13 +14,14 @@ const Person = props => {
 	}, [props.name]);
 
 	return (
-		<React.Fragment>
+		<Auxiliary>
 			<p onClick={props.deleteme}>
 				Hello, I am {props.name}, I am {props.age} year's old.
 			</p>
 			<input onChange={props.changeName} value={props.name} />
-		</React.Fragment>
+		</Auxiliary>
 	);
 };
 
-export default Person;
+//doubt
+export default withClass(Person, stylePerson.Person);
