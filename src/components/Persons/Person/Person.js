@@ -4,6 +4,9 @@ import Auxiliary from "../../../hoc/Auxiliary";
 import withClass from "../../../hoc/withClass";
 import PropTypes from "prop-types";
 
+//components
+import AuthContext from "../../../context/auth-context";
+
 class Person extends Component {
 	inputRef = React.createRef();
 	componentDidMount() {
@@ -11,9 +14,18 @@ class Person extends Component {
 		this.inputRef.current.focus();
 	}
 
+	static contextType = AuthContext;
+
+	componentDidUpdate() {
+		console.log("[Persons.js] Did Update");
+		console.log(this.context);
+	}
+
 	render() {
 		return (
 			<Auxiliary>
+				<p>{this.context.isAuthenticated ? "Logged in" : "Please log in"}</p>
+
 				<p onClick={this.props.deleteme}>
 					Hello, I am {this.props.name}, I am {this.props.age} year's old.
 				</p>

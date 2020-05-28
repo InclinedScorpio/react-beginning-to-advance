@@ -1,8 +1,13 @@
-import React, { useEffect, memo } from "react";
+import React, { useEffect, memo, useContext } from "react";
 import styleCockpit from "./Cockpit.module.css";
+
+//components
+import AuthContext from "../../context/auth-context";
 
 const Cockpit = props => {
 	const buttonRef = React.useRef(null);
+
+	const authContext = useContext(AuthContext);
 
 	useEffect(() => {
 		console.log("[Cockpit.js]");
@@ -40,6 +45,8 @@ const Cockpit = props => {
 				{" "}
 				HERE{" "}
 			</button>
+
+			<button onClick={authContext.authenticate}>Log In</button>
 		</div>
 	);
 };

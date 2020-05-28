@@ -4,6 +4,8 @@ import appStyle from "./App.module.css";
 //components
 import Persons from "../components/Persons/Persons";
 import Cockpit from "../components/Cockpit/Cockpit";
+import { throwStatement } from "@babel/types";
+import AuthContext from "../context/auth-context";
 
 class App extends Component {
 	constructor(props) {
@@ -18,7 +20,8 @@ class App extends Component {
 			more: "Anything here !",
 			showPersons: false,
 			showHeading: true,
-			counterValue: 0
+			counterValue: 0,
+			isAuthenticated: false
 		};
 	}
 
@@ -65,6 +68,12 @@ class App extends Component {
 		});
 	};
 
+	authenticationHandler = () => {
+		this.setState({
+			isAuthenticated: true
+		});
+	};
+
 	componentDidUpdate(prevProps, prevState, snapshot) {
 		console.log("[App.js]componentDidUpdate ");
 	}
@@ -95,14 +104,21 @@ class App extends Component {
 				>
 					Close Heading
 				</button>
-				{this.state.showHeading && (
-					<Cockpit
-						showPersons={this.state.showPersons}
-						persons={this.state.persons.length}
-						clicked={this.buttonClickHandler}
-					/>
-				)}
-				{person}
+				<AuthContext.Provider
+					value={{
+						isAuthenticated: this.state.isAuthenticated,
+						authenticate: this.authenticationHandler
+					}}
+				>
+					{this.state.showHeading && (
+						<Cockpit
+							showPersons={this.state.showPersons}
+							persons={this.state.persons.length}
+							clicked={this.buttonClickHandler}
+						/>
+					)}
+					{person}
+				</AuthContext.Provider>
 			</div>
 		);
 	}
