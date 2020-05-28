@@ -23,5 +23,4 @@ const Person = props => {
 	);
 };
 
-//doubt
 export default withClass(Person, stylePerson.Person);

@@ -17,7 +17,8 @@ class App extends Component {
 			],
 			more: "Anything here !",
 			showPersons: false,
-			showHeading: true
+			showHeading: true,
+			counterValue: 0
 		};
 	}
 
@@ -56,8 +57,11 @@ class App extends Component {
 		get_array[actualIndex].name = event.target.value;
 		get_array[actualIndex].age = actual_person.age;
 
-		this.setState({
-			persons: get_array
+		this.setState((prevState, props) => {
+			return {
+				persons: get_array,
+				counterValue: prevState.counterValue + 1
+			};
 		});
 	};
 
@@ -81,6 +85,7 @@ class App extends Component {
 
 		return (
 			<div className={appStyle.App}>
+				<p>{this.state.counterValue}</p>
 				<button
 					onClick={() => {
 						this.setState({
