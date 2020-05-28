@@ -1,12 +1,20 @@
-import React from "react";
+import React, { useEffect, memo } from "react";
 import styleCockpit from "./Cockpit.module.css";
 
 const Cockpit = props => {
+	useEffect(() => {
+		console.log("[Cockpit.js]");
+
+		return () => {
+			console.log("[Cockpit] Cleaning");
+		};
+	});
+
 	let h4classes = [];
-	if (props.persons.length <= 2) {
+	if (props.persons <= 2) {
 		h4classes.push(styleCockpit.bold);
 	}
-	if (props.persons.length <= 1) {
+	if (props.persons <= 1) {
 		h4classes.push(styleCockpit.undeline);
 	}
 
@@ -29,4 +37,4 @@ const Cockpit = props => {
 	);
 };
 
-export default Cockpit;
+export default memo(Cockpit);

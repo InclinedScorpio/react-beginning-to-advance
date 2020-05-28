@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import stylePerson from "./Person.module.css";
+import Auxiliary from "../../../hoc/Auxiliary";
 
 const Person = props => {
 	useEffect(() => {
@@ -11,12 +12,12 @@ const Person = props => {
 	}, [props.name]);
 
 	return (
-		<div className={stylePerson.Person}>
+		<React.Fragment>
 			<p onClick={props.deleteme}>
 				Hello, I am {props.name}, I am {props.age} year's old.
 			</p>
 			<input onChange={props.changeName} value={props.name} />
-		</div>
+		</React.Fragment>
 	);
 };
 

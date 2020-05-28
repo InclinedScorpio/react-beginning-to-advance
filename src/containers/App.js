@@ -93,7 +93,7 @@ class App extends Component {
 				{this.state.showHeading && (
 					<Cockpit
 						showPersons={this.state.showPersons}
-						persons={this.state.persons}
+						persons={this.state.persons.length}
 						clicked={this.buttonClickHandler}
 					/>
 				)}
