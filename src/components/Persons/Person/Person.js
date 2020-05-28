@@ -1,28 +1,32 @@
-import React, { useEffect } from "react";
+import React, { Component } from "react";
 import stylePerson from "./Person.module.css";
 import Auxiliary from "../../../hoc/Auxiliary";
 import withClass from "../../../hoc/withClass";
 import PropTypes from "prop-types";
 
-const Person = props => {
-	console.log("Props are ", props);
-	useEffect(() => {
-		console.log("Use Effect 1 ****************");
+class Person extends Component {
+	inputRef = React.createRef();
 
-		return () => {
-			console.log("Cleanup [] 1 &&&&&&&&&&&&");
-		};
-	}, [props.name]);
+	componentDidMount() {
+		//if want to do some other than pass a flag with 2nd & use if
+		this.inputRef.current.focus();
+	}
 
-	return (
-		<Auxiliary>
-			<p onClick={props.deleteme}>
-				Hello, I am {props.name}, I am {props.age} year's old.
-			</p>
-			<input onChange={props.changeName} value={props.name} />
-		</Auxiliary>
-	);
-};
+	render() {
+		return (
+			<Auxiliary>
+				<p onClick={this.props.deleteme}>
+					Hello, I am {this.props.name}, I am {this.props.age} year's old.
+				</p>
+				<input
+					ref={this.inputRef}
+					onChange={this.props.changeName}
+					value={this.props.name}
+				/>
+			</Auxiliary>
+		);
+	}
+}
 
 //propTypes in components if added, React will take care of that.
 Person.propTypes = {
